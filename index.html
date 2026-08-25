@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STORE NEBULA</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">
+            STORE NEBULA
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#layanan">Layanan</a>
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <h1>
+            Joki Game <span>Terpercaya</span>
+        </h1>
+
+        <p>
+            Joki Rank Mobile Legends & Free Fire
+            dengan proses cepat dan terpercaya.
+        </p>
+
+        <a href="#layanan" class="btn">
+            Lihat Layanan
+        </a>
+
+    </section>
+
+
+    <!-- LAYANAN -->
+    <section class="layanan" id="layanan">
+
+        <h2>Layanan Kami</h2>
+
+        <p class="subtitle">
+            Pilih game yang ingin kamu joki
+        </p>
+
+
+        <div class="produk">
+
+    <!-- MOBILE LEGENDS -->
+    <div class="card">
+
+        <div class="icon">🎮</div>
+
+        <h3>Mobile Legends</h3>
+
+        <p>Joki Rank Mobile Legends</p>
+
+        <button onclick="bukaOrder('Mobile Legends')">
+            Pesan Sekarang
+        </button>
+
+    </div>
+
+
+    <!-- FREE FIRE -->
+    <div class="card">
+
+        <div class="icon">🔥</div>
+
+        <h3>Free Fire</h3>
+
+        <p>Joki Rank Free Fire</p>
+
+        <button onclick="bukaOrder('Free Fire')">
+            Pesan Sekarang
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- POPUP ORDER -->
+<div class="popup" id="popup">
+
+    <div class="popup-box">
+
+        <button class="close" onclick="tutupOrder()">
+            ×
+        </button>
+
+        <h2 id="namaGame">
+            Order
+        </h2>
+
+        <!-- RANK -->
+        <label>Rank Awal</label>
+
+        <select id="rankAwal">
+            <option value="">
+                -- Pilih Rank Awal --
+            </option>
+        </select>
+
+
+        <label>Rank Tujuan</label>
+
+        <select id="rankTujuan">
+            <option value="">
+                -- Pilih Rank Tujuan --
+            </option>
+        </select>
+
+
+        <!-- DATA AKUN -->
+
+        <div class="form-title">
+            Data Akun
+        </div>
+
+
+        <label>Nickname</label>
+
+        <input
+            type="text"
+            id="nickname"
+            placeholder="Masukkan nickname"
+        >
+
+
+        <label>User ID</label>
+
+        <input
+            type="text"
+            id="userId"
+            placeholder="Masukkan User ID"
+        >
+
+
+        <div id="serverField">
+
+            <label>Server ID</label>
+
+            <input
+                type="text"
+                id="serverId"
+                placeholder="Contoh: 1234"
+            >
+
+        </div>
+
+
+        <label>Nomor WhatsApp</label>
+
+        <input
+            type="tel"
+            id="whatsapp"
+            placeholder="08xxxxxxxxxx"
+        >
+
+
+        <label>Catatan</label>
+
+        <textarea
+            id="catatan"
+            placeholder="Catatan tambahan (opsional)"
+        ></textarea>
+
+
+        <!-- HARGA -->
+
+        <div class="harga">
+
+            <span>Total Pesanan</span>
+
+            <strong id="totalHarga">
+                Rp0
+            </strong>
+
+        </div>
+
+
+        <button
+            class="btn-order"
+            onclick="buatPesanan()"
+        >
+            Lanjut Pesan
+        </button>
+
+    </div>
+
+</div>
+    </section>
+
+<!-- CHECKOUT -->
+<div class="checkout" id="checkout">
+
+    <div class="checkout-box">
+
+        <button class="close" onclick="tutupCheckout()">
+            ×
+        </button>
+
+        <div class="checkout-header">
+            <span>STORE NEBULA</span>
+            <h2>Checkout Pesanan</h2>
+        </div>
+
+
+        <!-- DETAIL GAME -->
+
+        <div class="checkout-card">
+
+            <h3>Detail Layanan</h3>
+
+            <div class="detail-row">
+                <span>Game</span>
+                <strong id="checkoutGame">
+                    -
+                </strong>
+            </div>
+
+            <div class="detail-row">
+                <span>Rank</span>
+                <strong id="checkoutRank">
+                    -
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- DATA AKUN -->
+
+        <div class="checkout-card">
+
+            <h3>Data Akun</h3>
+
+            <div class="detail-row">
+                <span>Nickname</span>
+                <strong id="checkoutNickname">
+                    -
+                </strong>
+            </div>
+
+            <div class="detail-row">
+                <span>User ID</span>
+                <strong id="checkoutUserId">
+                    -
+                </strong>
+            </div>
+
+            <div
+                class="detail-row"
+                id="checkoutServerRow"
+            >
+                <span>Server ID</span>
+
+                <strong id="checkoutServerId">
+                    -
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- KONTAK -->
+
+        <div class="checkout-card">
+
+            <h3>Kontak</h3>
+
+            <div class="detail-row">
+
+                <span>WhatsApp</span>
+
+                <strong id="checkoutWhatsapp">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="checkout-total">
+
+            <span>Total Pembayaran</span>
+
+            <strong id="checkoutHarga">
+                Rp0
+            </strong>
+
+        </div>
+
+
+        <button
+            class="btn-confirm"
+            onclick="konfirmasiPesanan()"
+        >
+            Konfirmasi & Pesan
+        </button>
+
+    </div>
+
+</div>
+
+<!-- PEMBAYARAN -->
+<div class="payment" id="payment">
+
+    <div class="payment-box">
+
+        <button
+            class="close"
+            onclick="tutupPembayaran()"
+        >
+            ×
+        </button>
+
+        <div class="payment-header">
+
+            <span>STORE NEBULA</span>
+
+            <h2>Pembayaran</h2>
+
+            <p>
+                Selesaikan pembayaran untuk
+                melanjutkan pesanan.
+            </p>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="payment-total">
+
+            <span>Total Pembayaran</span>
+
+            <strong id="paymentHarga">
+                Rp0
+            </strong>
+
+        </div>
+
+
+        <!-- METODE PEMBAYARAN -->
+
+        <h3 class="payment-title">
+            Pilih Metode Pembayaran
+        </h3>
+
+
+        <div class="payment-methods">
+
+            <button
+                class="payment-method"
+                onclick="pilihPembayaran('DANA')"
+            >
+                <span>💙</span>
+                <div>
+                    <strong>DANA</strong>
+                    <small>Pembayaran Digital</small>
+                </div>
+            </button>
+
+
+            <button
+                class="payment-method"
+                onclick="pilihPembayaran('OVO')"
+            >
+                <span>💜</span>
+                <div>
+                    <strong>OVO</strong>
+                    <small>Pembayaran Digital</small>
+                </div>
+            </button>
+
+
+            <button
+                class="payment-method"
+                onclick="pilihPembayaran('QRIS')"
+            >
+                <span>📱</span>
+                <div>
+                    <strong>QRIS</strong>
+                    <small>Scan untuk membayar</small>
+                </div>
+            </button>
+
+        </div>
+
+
+        <!-- DETAIL PEMBAYARAN -->
+
+        <div
+            class="payment-detail"
+            id="paymentDetail"
+        >
+
+            <p>
+                Pilih metode pembayaran terlebih dahulu.
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn-payment"
+            onclick="konfirmasiPembayaran()"
+        >
+            Saya Sudah Membayar
+        </button>
+
+    </div>
+
+</div>
+
+<div class="order-number">
+
+    <span>Nomor Pesanan</span>
+
+    <strong id="orderNumber">
+        SN-000000-000
+    </strong>
+
+</div>
+
+
+<div class="upload-section">
+
+    <h3>
+        Bukti Pembayaran
+    </h3>
+
+    <p>
+        Upload screenshot bukti pembayaran kamu.
+    </p>
+
+    <label class="upload-box">
+
+        <input
+            type="file"
+            id="buktiPembayaran"
+            accept="image/*"
+            onchange="previewBukti(event)"
+        >
+
+        <span>
+            📷 Pilih Bukti Pembayaran
+        </span>
+
+    </label>
+
+
+    <div
+        id="previewContainer"
+        class="preview-container"
+    >
+
+    </div>
+
+</div>
+    
+    <script src="script.js"></script>
+
+</body>
+
+</html>
