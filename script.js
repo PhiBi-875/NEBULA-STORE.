@@ -1,4 +1,4 @@
-const nomorAdmin = "085267963967";
+const nomorAdmin = "6285267963967";
 
 let gameDipilih = "";
 
@@ -697,9 +697,7 @@ function konfirmasiPembayaran() {
 
     if (!metodePembayaran) {
 
-        alert(
-            "Silakan pilih metode pembayaran."
-        );
+        alert("Silakan pilih metode pembayaran.");
 
         return;
     }
@@ -721,22 +719,122 @@ function konfirmasiPembayaran() {
     }
 
 
+    const awal =
+        document.getElementById("rankAwal").value;
+
+    const tujuan =
+        document.getElementById("rankTujuan").value;
+
+    const nickname =
+        document.getElementById("nickname").value.trim();
+
+    const userId =
+        document.getElementById("userId").value.trim();
+
+    const serverId =
+        document.getElementById("serverId").value.trim();
+
+    const whatsapp =
+        document.getElementById("whatsapp").value.trim();
+
+    const catatan =
+        document.getElementById("catatan").value.trim();
+
+
+    // Ambil nomor order
+
     const nomorOrder =
         document.getElementById(
             "orderNumber"
         ).innerText;
 
 
+    // Buat data order
+
+    const order = {
+
+        id: nomorOrder,
+
+        game: gameDipilih,
+
+        rankAwal: awal,
+
+        rankTujuan: tujuan,
+
+        nickname: nickname,
+
+        userId: userId,
+
+        serverId:
+            gameDipilih === "Mobile Legends"
+                ? serverId
+                : "-",
+
+        whatsapp: whatsapp,
+
+        catatan: catatan || "-",
+
+        harga: hargaPesanan,
+
+        metodePembayaran:
+            metodePembayaran,
+
+        status: "Menunggu",
+
+        tanggal:
+            new Date().toLocaleString(
+                "id-ID"
+            )
+
+    };
+
+
+    // Ambil order lama
+
+    const orders =
+        JSON.parse(
+            localStorage.getItem(
+                "storeNebulaOrders"
+            )
+        ) || [];
+
+
+    // Tambahkan order baru
+
+    orders.push(order);
+
+
+    // Simpan
+
+    localStorage.setItem(
+        "storeNebulaOrders",
+        JSON.stringify(orders)
+    );
+
+
     alert(
-        "Pembayaran berhasil dikonfirmasi!\n\n" +
+        "Pesanan berhasil dikirim!\n\n" +
         "Nomor Pesanan: " +
         nomorOrder +
-        "\n" +
-        "Metode: " +
-        metodePembayaran +
-        "\n" +
-        "Total: " +
-        formatRupiah(hargaPesanan)
+        "\n\n" +
+        "Silakan tunggu admin memproses pesanan."
     );
+
+
+    // Tutup pembayaran
+
+    document.getElementById("payment")
+        .style.display = "none";
+
+
+    // Reset form
+
+    document.getElementById(
+        "buktiPembayaran"
+    ).value = "";
+
+    document.getElementById(
+        "previewContainer"
+    ).innerHTML = "";
 
 }
